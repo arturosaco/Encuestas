@@ -1,0 +1,655 @@
+length(unique(vid$y))
+dim(vid)
+960*53*240
+dim(vid.1)
+head(vid.1)
+53*3*240*320
+3*240*320
+dim(vid.sub)
+vid.sub <- vid.1[vid.1$frame==1,]
+dim(unique(vid.sub))
+head(vid.sub)
+dim(unique(vid.1))
+dim(vid.1)
+12211200/6701449
+vid <- read.csv(file = "/Users/Arturo/Desktop/Kaggle/CHALEARN/data/devel04/csvs/M_1.csv", #
+    header = F)#
+#
+names(vid) <- c("frame", paste("R", 1:320, sep = "__"),#
+    paste("G", 1:320, sep = "__"),#
+    paste("B", 1:320, sep = "__"))#
+vid$y <- rep(1:240, times = 53)
+gc()#
+vid.1 <- melt(vid, id.vars = c("frame", "y"))#
+#rm(vid)#
+gc()
+head(vid.1)
+dim(vid.1)
+dim(unique(vid.1))
+substr(vid.1$variable[1:10], 1, 1)
+gsub(".__","","R__1")
+vid.1$color <- substr(vid.1$variable, 1, 1)#
+vid.1$x <- gsub(".__","",vid.1$variable)
+head(vid.1)
+vid.sub <- vid.1[vid.1$frame==1,c("frame", "x", "y" , "color","value")]
+head(vid.sub)
+dim(vid.sub)
+dim(unique(vid.sub))
+vid.sub.1 <- cast(vid.sub, frame ~ color + x + y,#
+    fun.aggregate = "identity", value = "value")
+head(vid.sub)
+head(vid.sub.1)
+?system.time
+system.time(vid.sub.1 <- cast(vid.sub, frame ~ color + x + y,#
+    fun.aggregate = "identity", value = "value"))
+gc()
+system.time(vid.sub.1 <- cast(vid.sub, frame ~ color + x + y,#
+    fun.aggregate = "identity", value = "value"))
+14*53
+14*53/60
+library(reshape)
+vid <- read.csv(file = "/Users/Arturo/Desktop/Kaggle/CHALEARN/data/devel04/csvs/M_1.csv", #
+    header = F)#
+#
+names(vid) <- c("frame", paste("R", 1:320, sep = "__"),#
+    paste("G", 1:320, sep = "__"),#
+    paste("B", 1:320, sep = "__"))#
+vid$y <- rep(1:240, times = 53)#
+#
+gc()#
+vid.1 <- melt(vid, id.vars = c("frame", "y"))#
+rm(vid)#
+gc()#
+#
+vid.1$color <- substr(vid.1$variable, 1, 1)#
+vid.1$x <- gsub(".__","",vid.1$variable)#
+vid.1$variable <- NULL#
+gc()
+ls()
+system.time(#
+vid.2 <- ddply(vid.1, "frame", function(vid.sub){#
+    cast(vid.sub, frame ~ color + x + y,#
+        fun.aggregate = "identity", value = "value")#
+}, .progress = "text")#
+)
+gc()
+?system.time
+vid <- read.csv(file = "/Users/Arturo/Desktop/Kaggle/CHALEARN/data/devel04/csvs/M_1.csv", #
+    header = F)#
+#
+names(vid) <- c("frame", paste("R", 1:320, sep = "__"),#
+    paste("G", 1:320, sep = "__"),#
+    paste("B", 1:320, sep = "__"))#
+vid$y <- rep(1:240, times = 53)#
+#
+gc()#
+vid.1 <- melt(vid, id.vars = c("frame", "y"))#
+rm(vid)#
+gc()#
+#
+vid.1$color <- substr(vid.1$variable, 1, 1)#
+vid.1$x <- gsub(".__","",vid.1$variable)#
+vid.1$variable <- NULL#
+gc()
+library(reshape)
+gc()#
+vid.1 <- melt(vid, id.vars = c("frame", "y"))#
+rm(vid)#
+gc()#
+#
+vid.1$color <- substr(vid.1$variable, 1, 1)#
+vid.1$x <- gsub(".__","",vid.1$variable)#
+vid.1$variable <- NULL#
+gc()
+vid <- read.csv(file = "/Users/Arturo/Desktop/Kaggle/CHALEARN/data/devel04/csvs/M_1.csv", #
+    header = F)#
+#
+names(vid) <- c("frame", paste("R", 1:320, sep = "__"),#
+    paste("G", 1:320, sep = "__"),#
+    paste("B", 1:320, sep = "__"))#
+vid$y <- rep(1:240, times = 53)#
+#
+gc()#
+vid.1 <- melt(vid, id.vars = c("frame", "y"))#
+rm(vid)#
+gc()#
+#
+vid.1$color <- substr(vid.1$variable, 1, 1)#
+vid.1$x <- gsub(".__","",vid.1$variable)#
+vid.1$variable <- NULL#
+gc()
+system.time(#
+vid.2 <- dlply(vid.1, "frame", function(vid.sub){#
+    cast(vid.sub, frame ~ color + x + y,#
+        fun.aggregate = "identity", value = "value")#
+}, .progress = "text")#
+)
+582/60
+lista.frames <- list()
+lista.frames[1]
+lista.frames[[2]] <- 2
+lista.frames
+gc()
+head(vid.2)
+class(vid.2)
+length(vid.2)
+dim(vid.2[[1]])
+dim(vid.2[[2]])
+vid.2[[1]][1,1:10]
+vid.2[[1]][1,1:100]
+vid <- read.csv(file = "/Users/Arturo/Desktop/Kaggle/CHALEARN/data/devel04/csvs/M_1.csv", #
+    header = F)#
+#
+names(vid) <- c("frame", paste("R", 1:320, sep = "__"),#
+    paste("G", 1:320, sep = "__"),#
+    paste("B", 1:320, sep = "__"))#
+vid$y <- rep(1:240, times = 53)#
+#
+gc()#
+vid.1 <- melt(vid, id.vars = c("frame", "y"))#
+rm(vid)#
+gc()#
+#
+vid.1$color <- substr(vid.1$variable, 1, 1)#
+vid.1$x <- gsub(".__","",vid.1$variable)#
+vid.1$variable <- NULL#
+gc()
+library(reshape)
+vid <- read.csv(file = "/Users/Arturo/Desktop/Kaggle/CHALEARN/data/devel04/csvs/M_1.csv", #
+    header = F)#
+#
+names(vid) <- c("frame", paste("R", 1:320, sep = "__"),#
+    paste("G", 1:320, sep = "__"),#
+    paste("B", 1:320, sep = "__"))#
+vid$y <- rep(1:240, times = 53)#
+#
+gc()#
+vid.1 <- melt(vid, id.vars = c("frame", "y"))#
+rm(vid)#
+gc()#
+#
+vid.1$color <- substr(vid.1$variable, 1, 1)#
+vid.1$x <- gsub(".__","",vid.1$variable)#
+vid.1$variable <- NULL#
+gc()
+lista.frames <- list()#
+system.time(#
+for(frame.int in 1:53){#
+    vid.sub <- vid.1[vid.1$frame==frame.int,]#
+    lista.frames[[frame.int]] <- cast(vid.sub, frame ~ color + x + y,#
+        fun.aggregate = "identity", value = "value")#
+    rm(vid.sub)#
+}#
+)
+608/60
+ls()
+rm(list=ls())
+system.time(#
+#
+vid <- read.csv(file = "/Users/Arturo/Desktop/Kaggle/CHALEARN/data/devel04/csvs/M_1.csv", #
+    header = F)#
+#
+names(vid) <- c("frame", paste("R", 1:320, sep = "__"),#
+    paste("G", 1:320, sep = "__"),#
+    paste("B", 1:320, sep = "__"))#
+vid$y <- rep(1:240, times = 53)#
+#
+gc()#
+vid.1 <- melt(vid, id.vars = c("frame", "y"))#
+rm(vid)#
+gc()#
+#
+vid.1$color <- substr(vid.1$variable, 1, 1)#
+vid.1$x <- gsub(".__","",vid.1$variable)#
+vid.1$variable <- NULL#
+gc()#
+#
+vid.2 <- dlply(vid.1, "frame", function(vid.sub){#
+    cast(vid.sub, frame ~ color + x + y,#
+        fun.aggregate = "identity", value = "value")#
+}, .progress = "text")#
+#
+rm(vid.1)#
+#
+vid.3 <- Reduce(rbind, vid.2)#
+)
+library(reshape)
+system.time(#
+#
+vid <- read.csv(file = "/Users/Arturo/Desktop/Kaggle/CHALEARN/data/devel04/csvs/M_1.csv", #
+    header = F)#
+#
+names(vid) <- c("frame", paste("R", 1:320, sep = "__"),#
+    paste("G", 1:320, sep = "__"),#
+    paste("B", 1:320, sep = "__"))#
+vid$y <- rep(1:240, times = 53)#
+#
+gc()#
+vid.1 <- melt(vid, id.vars = c("frame", "y"))#
+rm(vid)#
+gc()#
+#
+vid.1$color <- substr(vid.1$variable, 1, 1)#
+vid.1$x <- gsub(".__","",vid.1$variable)#
+vid.1$variable <- NULL#
+gc()#
+#
+vid.2 <- dlply(vid.1, "frame", function(vid.sub){#
+    cast(vid.sub, frame ~ color + x + y,#
+        fun.aggregate = "identity", value = "value")#
+}, .progress = "text")#
+#
+rm(vid.1)#
+#
+vid.3 <- Reduce(rbind, vid.2)#
+)
+system.time(#
+#
+vid <- read.csv(file = "/Users/Arturo/Desktop/Kaggle/CHALEARN/data/devel04/csvs/M_1.csv", #
+    header = F)#
+#
+names(vid) <- c("frame", paste("R", 1:320, sep = "__"),#
+    paste("G", 1:320, sep = "__"),#
+    paste("B", 1:320, sep = "__"))#
+vid$y <- rep(1:240, times = 53)#
+#
+gc()#
+vid.1 <- melt(vid, id.vars = c("frame", "y"))#
+rm(vid)#
+gc()#
+#
+vid.1$color <- substr(vid.1$variable, 1, 1)#
+vid.1$x <- gsub(".__","",vid.1$variable)#
+vid.1$variable <- NULL#
+gc()#
+#
+vid.2 <- dlply(vid.1, "frame", function(vid.sub){#
+    cast(vid.sub, frame ~ color + x + y,#
+        fun.aggregate = "identity", value = "value")#
+}, .progress = "text")#
+#
+rm(vid.1)#
+#
+vid.3 <- Reduce(rbind, vid.2)#
+#
+)
+system.time(vid <- #
+    read.csv(file = "/Users/Arturo/Desktop/Kaggle/CHALEARN/data/devel04/csvs/M_1.csv", #
+    header = F)#
+#
+names(vid) <- c("frame", paste("R", 1:320, sep = "__"),#
+    paste("G", 1:320, sep = "__"),#
+    paste("B", 1:320, sep = "__"))#
+vid$y <- rep(1:240, times = 53)#
+#
+gc()#
+vid.1 <- melt(vid, id.vars = c("frame", "y"))#
+rm(vid)#
+gc()#
+#
+vid.1$color <- substr(vid.1$variable, 1, 1)#
+vid.1$x <- gsub(".__","",vid.1$variable)#
+vid.1$variable <- NULL#
+gc()#
+#
+vid.2 <- dlply(vid.1, "frame", function(vid.sub){#
+    cast(vid.sub, frame ~ color + x + y,#
+        fun.aggregate = "identity", value = "value")#
+}, .progress = "text")#
+#
+rm(vid.1)#
+#
+vid.3 <- Reduce(rbind, vid.2))
+vid <- #
+    read.csv(file = "/Users/Arturo/Desktop/Kaggle/CHALEARN/data/devel04/csvs/M_1.csv", #
+    header = F)#
+#
+names(vid) <- c("frame", paste("R", 1:320, sep = "__"),#
+    paste("G", 1:320, sep = "__"),#
+    paste("B", 1:320, sep = "__"))#
+vid$y <- rep(1:240, times = 53)#
+#
+gc()#
+vid.1 <- melt(vid, id.vars = c("frame", "y"))#
+rm(vid)#
+gc()#
+#
+vid.1$color <- substr(vid.1$variable, 1, 1)#
+vid.1$x <- gsub(".__","",vid.1$variable)#
+vid.1$variable <- NULL#
+gc()#
+#
+vid.2 <- dlply(vid.1, "frame", function(vid.sub){#
+    cast(vid.sub, frame ~ color + x + y,#
+        fun.aggregate = "identity", value = "value")#
+}, .progress = "text")#
+#
+rm(vid.1)#
+#
+vid.3 <- Reduce(rbind, vid.2)
+system.time(#
+    vid <- #
+        read.csv(file = "/Users/Arturo/Desktop/Kaggle/CHALEARN/data/devel04/csvs/M_1.csv", #
+        header = F)#
+#
+    names(vid) <- c("frame", paste("R", 1:320, sep = "__"),#
+        paste("G", 1:320, sep = "__"),#
+        paste("B", 1:320, sep = "__"))#
+    vid$y <- rep(1:240, times = 53)#
+#
+    gc()#
+    vid.1 <- melt(vid, id.vars = c("frame", "y"))#
+    rm(vid)#
+    gc()#
+#
+    vid.1$color <- substr(vid.1$variable, 1, 1)#
+    vid.1$x <- gsub(".__","",vid.1$variable)#
+    vid.1$variable <- NULL#
+    gc()#
+#
+    vid.2 <- dlply(vid.1, "frame", function(vid.sub){#
+        cast(vid.sub, frame ~ color + x + y,#
+            fun.aggregate = "identity", value = "value")#
+    }, .progress = "text")#
+#
+    rm(vid.1)#
+    gc()#
+    vid.3 <- Reduce(rbind, vid.2)#
+)
+c("frame", paste("R", 1:320, sep = "__"),#
+        paste("G", 1:320, sep = "__"),#
+        paste("B", 1:320, sep = "__"))
+vid <- #
+    read.csv(file = "/Users/Arturo/Desktop/Kaggle/CHALEARN/data/devel04/csvs/M_1.csv", #
+    header = F)#
+#
+names(vid) <- c("frame", paste("R", 1:320, sep = "__"),#
+    paste("G", 1:320, sep = "__"),#
+    paste("B", 1:320, sep = "__"))#
+#
+vid$y <- rep(1:240, times = 53)#
+#
+gc()#
+vid.1 <- melt(vid, id.vars = c("frame", "y"))#
+rm(vid)#
+gc()#
+#
+vid.1$color <- substr(vid.1$variable, 1, 1)#
+vid.1$x <- gsub(".__","",vid.1$variable)#
+vid.1$variable <- NULL#
+gc()#
+#
+vid.2 <- dlply(vid.1, "frame", function(vid.sub){#
+    cast(vid.sub, frame ~ color + x + y,#
+        fun.aggregate = "identity", value = "value")#
+}, .progress = "text")#
+#
+rm(vid.1)#
+gc()#
+vid.3 <- Reduce(rbind, vid.2)
+dim(vid.3)
+ls()
+rm(vid.2)
+gc()
+load("/Users/Arturo/Desktop/Kaggle/CHALEARN/cache/dev01.vid01.rgb.RData")
+vignette("gettingstartedMC")
+/Users/Arturo/Desktop/Kaggle/CHALEARN/cache/dev01.vid01.prof.Rdata
+"/Users/Arturo/Desktop/Kaggle/CHALEARN/cache/dev01.vid01.prof.Rdata"
+load("/Users/Arturo/Desktop/Kaggle/CHALEARN/cache/dev01.vid01.prof.Rdata")
+vid <- dev01.vid01.prof#
+comps <- prcomp(vid[,-1], cor = T)
+comps
+str(comps)
+comps$sdev
+vid[1:10,1:10]
+vid[1:10,1:100]
+sapply(vid[,-1], function(int){length(unique(int))})
+table(sapply(vid[,-1], function(int){length(unique(int))}))
+dim(vid)
+library(blmer)
+install.packages("blmer")
+install.packages("lmer")
+install.packages("lmer4")
+library(lme4)
+?blmer
+?lmer
+library(arm)
+?blmer
+blmer
+bglmer
+??lme4
+lme4
+library(lme4)
+?blme
+?blmer
+library(blme)
+install.packages("blme")
+?blme
+?blmer
+library(blme)
+?bglmer
+library(glmnet)
+?glmnet
+plot(5:20, errores, type = "l")
+datos.prueba <- read.csv(/Users/Arturo/Kaggle/Bonos/data/dataCSV/test.csv)
+datos.prueba <- read.csv("/Users/Arturo/Kaggle/Bonos/data/dataCSV/test.csv")
+dim(datos.prueba)
+head(datos.prueba)
+sapply(datos.prueba, function(int){sum(is.na(int))})
+round(sapply(datos.prueba, function(int){sum(is.na(int))})/nrow(datos.prueba)*100)
+datos.ent <- read.csv("/Users/Arturo/Kaggle/Bonos/data/dataCSV/train.csv")
+lsos()
+ls()
+rm(datos.prueba)
+gc()
+head(datos.ent)
+length(datos.ent$id)
+length(unique(datos.ent$id))
+log(1)
+library(twitteR)
+Tweets <- userTimeline('arturosaco')
+Tweets
+tweets <- userTimeline('reginarbm')
+twwets
+tweets
+tweets <- userTimeline('rodrno')
+tweets
+tweets <- searchTwitter('Woody Allen', n=50)
+tweets
+searchTwitter
+?searTwitter
+?searchTwitter
+tweets <- searchTwitter('JVM', n=50)
+tweets
+tweets <- searchTwitter('macariomx', n=50)
+tweets
+tweets <- searchTwitter('@reginarbm', n=50)
+tweets
+tweets <- searchTwitter('reginarbm', n=50)
+tweets
+tweets <- searchTwitter('arturosaco', n=50)
+tweets
+pred.gbm <- predict(mod.gbm, newdata = as.matrix(test),#
+    n.trees = 5000, type = "response")#
+#
+write.table(pred.gbm, file = "predictions/pred_gbm.csv", row.names = F, col.names = F)
+train[, 1]
+mod.gbm <- gbm.fit(x = as.matrix(train[, -1]), y = train[, 1],#
+    n.trees = 5000, interaction.depth = 3, shrinkage = 0.1,#
+    distribution = "bernoulli",#
+    keep.data = F)
+n.trees = 5000, type = "response")#
+#
+write.table(pred.gbm, file = "predictions/pred_gbm.csv", row.names = F, col.names = F)
+pred.gbm <- predict(mod.gbm, newdata = as.matrix(test),#
+    n.trees = 1000, type = "response")#
+#
+write.table(pred.gbm, file = "predictions/pred_gbm.csv", row.names = F, col.names = F)
+formu <- as.formula(paste(names(train)[1], " ~ ", paste(names(train)[-1], collapse = " + ")))
+tweets <- searchTwitter('arturosaco', n=50)#
+df <- twListToDF(tweets)
+df
+dim(DF)
+dim(df)
+names(df)
+sapply(df,class)
+install.packages("Sweave")
+?install.packages
+install.packages("Sweave", type = "source")
+library(Sweave)
+registerDoMC(4)
+25000*100
+25000*100/15
+166666.7 * 13
+library(ProjectTemplate)
+setwd("Dropbox/Codigo random/")
+create.project("Encuestas")
+setwd("Encuestas")
+load.project()
+reload.project()
+ls()
+datos <- X18may
+head(datos)
+datos$Error <- as.numeric(gsub("[^0-9]", "", datos$Error))
+head(datos)
+datos <- X18may#
+datos$Error <- as.numeric(gsub("[^0-9\\.]", "", datos$Error))
+head(datos)
+sapply(datos,class)
+datos$Del
+as.Date(datos$Del)
+?as.Date
+as.Date(as.character(datos$Del))
+as.Date(datos$Del, "%d-%m-%y")
+as.Date(datos$Del, "%d/%m/%y")
+head(datos)
+datos$Al <- as.Date(datos$Al, "%d/%m/%y")
+datos$al <- as.Date(datos$al, "%d/%m/%y")
+plot(datos$Muestra, datos$Error)
+datos <- X18may#
+datos$Error <- as.numeric(gsub("[^0-9\\.]", "", datos$Error))#
+datos$Del <- as.Date(datos$Del, "%d/%m/%y")#
+datos$al <- as.Date(datos$al, "%d/%m/%y")
+head(datos)
+reload.project()
+datos <- X18may#
+datos$Error <- as.numeric(gsub("[^0-9\\.]", "", datos$Error))#
+datos$Del <- as.Date(datos$Del, "%d/%m/%y")#
+datos$al <- as.Date(datos$al, "%d/%m/%y")
+head(datos)
+reload.project()
+datos.1 <- melt(datos[,c("del", "al", "Encuesta", "Muestra", "EPN", "JVM", "AMLO", "GQ")],#
+    id.vars = c("del", "al", "Encuesta", "Muestra"))
+reload.project()
+datos <- X18may#
+datos$Error <- as.numeric(gsub("[^0-9\\.]", "", datos$Error))#
+datos$Del <- as.Date(datos$Del, "%d/%m/%y")#
+datos$al <- as.Date(datos$al, "%d/%m/%y")#
+#
+datos.1 <- melt(datos[,c("del", "al", "Encuesta", "Muestra", "EPN", "JVM", "AMLO", "GQ")],#
+    id.vars = c("del", "al", "Encuesta", "Muestra"))
+sapply(datos,class)
+datos$Del <- base::as.Date(datos$Del, "%d/%m/%y")#
+datos$al <- base::as.Date(datos$al, "%d/%m/%y")
+datos <- X18may#
+datos$Error <- as.numeric(gsub("[^0-9\\.]", "", datos$Error))#
+datos$Del <- as.Date(datos$del, "%d/%m/%y")#
+datos$al <- as.Date(datos$al, "%d/%m/%y")#
+#
+datos.1 <- melt(datos[,c("del", "al", "Encuesta", "Muestra", "EPN", "JVM", "AMLO", "GQ")],#
+    id.vars = c("del", "al", "Encuesta", "Muestra"))
+head(datos.1)
+ggplot(datos.1, aes(x = al, y = value, group = Encuesta, colour = Encuesta)) +#
+    geom_line() + geom_point() + facet_wrap(~variable,ncol =1)
+class(datos.1$value)
+datos.1$value <- a.numeric(datos.1$value)    #
+ggplot(datos.1, aes(x = al, y = value, group = Encuesta, colour = Encuesta)) +#
+    geom_line() + geom_point() + facet_wrap(~variable,ncol =1)
+datos.1$value <- as.numeric(datos.1$value)    #
+ggplot(datos.1, aes(x = al, y = value, group = Encuesta, colour = Encuesta)) +#
+    geom_line() + geom_point() + facet_wrap(~variable,ncol =1)
+ggplot(datos.1, aes(x = al, y = value, group = Encuesta, colour = Encuesta)) +#
+    geom_line() + facet_wrap(~variable,ncol =1)
+head(datos)
+datos <- X18may#
+datos$Error <- as.numeric(gsub("[^0-9\\.]", "", datos$Error))#
+datos$del <- as.Date(datos$del, "%d/%m/%y")#
+datos$al <- as.Date(datos$al, "%d/%m/%y")#
+#
+datos.1 <- melt(datos[,c("del", "al", "Encuesta", "Muestra", "EPN", "JVM", "AMLO", "GQ")],#
+    id.vars = c("del", "al", "Encuesta", "Muestra"))#
+datos.1$value <- as.numeric(datos.1$value)    #
+ggplot(datos.1, aes(x = al, y = value, group = Encuesta, colour = Encuesta)) +#
+    geom_line() + facet_wrap(~variable,ncol =1)
+datos
+datos.1 <- melt(datos[,#
+    c("del", "al", "Encuesta", "Muestra", "EPN", "JVM", "AMLO", "GQ", "NR")],#
+    id.vars = c("del", "al", "Encuesta", "Muestra"))#
+datos.1$value <- as.numeric(datos.1$value)    #
+ggplot(datos.1, aes(x = al, y = value, group = Encuesta, colour = Encuesta)) +#
+    geom_line() + facet_wrap(~variable,ncol =1)
+reload.project()
+datos <- X18may#
+datos$Error <- as.numeric(gsub("[^0-9\\.]", "", datos$Error))#
+datos$del <- as.Date(datos$del, "%d/%m/%y")#
+datos$al <- as.Date(datos$al, "%d/%m/%y")#
+#
+datos.1 <- melt(datos[,#
+    c("del", "al", "Encuesta", "Muestra", "EPN", "JVM", "AMLO", "GQ", "NR")],#
+    id.vars = c("del", "al", "Encuesta", "Muestra"))#
+datos.1$value <- as.numeric(datos.1$value)    #
+ggplot(datos.1, aes(x = al, y = value, group = Encuesta, colour = Encuesta)) +#
+    geom_line() + facet_wrap(~variable,ncol =1)
+head(datos.1)
+datos.1 <- ddply(datos.1, "al", transform, muestra.tot = sum(Muestra, na.rm = T))
+ddply(datos.1, c("al", "variable"), summarise, prom = value * (Muestra / muestra.tot))
+ggplot(datos.2, aes(x = al, y = prom, colour = variable, group = variable)) + #
+    geom_line()
+datos.2 <- ddply(datos.1, c("al", "variable"), summarise,#
+    prom = value * (Muestra / muestra.tot))#
+#
+ggplot(datos.2, aes(x = al, y = prom, colour = variable, group = variable)) + #
+    geom_line()
+head(datos.1)
+head(datos)
+datos.1 <- ddply(datos.1, "al", transform, muestra.tot = sum(Muestra, na.rm = T))#
+datos.2 <- ddply(datos.1, c("al", "variable"), summarise,#
+    prom = sum(value * (Muestra / muestra.tot)))#
+#
+ggplot(datos.2, aes(x = al, y = prom, colour = variable, group = variable)) + #
+    geom_line()
+ggplot(datos.2[year(datos.2$al) > 2011,], aes(x = al, y = prom, colour = variable, group = variable)) + #
+    geom_line()
+datos.1$Muestra <- as.numeric(datos.1$Muestra)    #
+#
+ggplot(datos.1, aes(x = al, y = value, group = Encuesta, colour = Encuesta)) +#
+    geom_line() + facet_wrap(~variable,ncol =1)#
+#
+datos.1 <- ddply(datos.1, "al", transform, muestra.tot = sum(Muestra, na.rm = T))#
+datos.2 <- ddply(datos.1, c("al", "variable"), summarise,#
+    prom = sum(value * (Muestra / muestra.tot)))#
+#
+ggplot(datos.2[year(datos.2$al) > 2011,], aes(x = al, y = prom, colour = variable, group = variable)) + #
+    geom_line()
+head(datos.1)
+datos.2 <- ddply(datos.1, c("al", "variable"), summarise,#
+    prom = sum(value * (Muestra / muestra.tot), na.rm = T))#
+#
+ggplot(datos.2[year(datos.2$al) > 2011,], aes(x = al, y = prom, colour = variable, group = variable)) + #
+    geom_line()
+head(datos.1)
+ddply(datos.1, c("al", variable") summarise, mean(value))
+)
+ddply(datos.1, c("al", variable"), summarise, mean(value))
+)
+ddply(datos.1, c("al", "variable"), summarise, mean(value))
+head(datos.1)
+head(datos.1, 50)
+datos.1$w <- datos.1$Muestra / datos.1$muestra.tot
+datos.1$w
+datos.1 <- ddply(datos.1, "al", transform, muestra.tot = sum(Muestra, na.rm = T))#
+datos.1$w <- datos.1$Muestra / datos.1$muestra.tot#
+datos.2 <- ddply(datos.1, c("al", "variable"), summarise,#
+    prom = sum(value * w, na.rm = T))
+head(datos.2)
+head(datos)
