@@ -1,7 +1,7 @@
 library('ProjectTemplate')
 load.project()
 
-datos <- X18may
+datos <- X24may
 datos$Error <- as.numeric(gsub("[^0-9\\.]", "", datos$Error))
 datos$del <- as.Date(datos$del, "%d/%m/%y")
 datos$al <- as.Date(datos$al, "%d/%m/%y")
@@ -35,7 +35,9 @@ datos.3 <- ddply(datos.2, "fecha", function(sub){
 })
 names(datos.3)[names(datos.3)== "variable"] <- "candidato"
 datos.4 <- melt(datos.3[datos.3$fecha > "2012-03-01",], id.vars = c("fecha", "candidato"))
+ult.ant <- as.Date("2012-05-16")
+debate <- as.Date("2012-05-06")
+ibero <- as.Date("2012-05-11")
+ggplot(datos.4[datos.4$variable == "prom", ], aes(x = fecha, y = value, colour = candidato, group = candidato)) + 
+    geom_line() + facet_wrap(~variable) + geom_vline(xintercept = as.numeric(debate))
 
-ggplot(datos.4, aes(x = fecha, y = value, colour = candidato, group = candidato)) + 
-    geom_line() + facet_wrap(~variable)
-    
