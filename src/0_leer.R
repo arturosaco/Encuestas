@@ -1,7 +1,7 @@
 library('ProjectTemplate')
 load.project()
 
-datos <- X31mayo
+datos <- X1jun
 datos$Error <- as.numeric(gsub("[^0-9\\.]", "", datos$Error))
 datos$del <- as.Date(datos$del, "%d/%m/%y")
 datos$al <- as.Date(datos$al, "%d/%m/%y")
@@ -27,10 +27,10 @@ datos.2 <- ddply(datos.1, c("fecha", "variable"), summarise,
 
 datos.3 <- ddply(datos.2, "fecha", function(sub){
     sub[sub$variable == "AMLO", 'prom.mod'] <- sub[sub$variable == "AMLO", 'prom.mod'] + 
-        sub[sub$variable == "NR", 'prom.mod'] * 1/2
+        sub[sub$variable == "NR", 'prom.mod'] * 1/3
     sub[sub$variable == "JVM", 'prom.mod'] <- sub[sub$variable == "JVM", 'prom.mod'] + 
-        sub[sub$variable == "NR", 'prom.mod'] * 1/2
-    sub[sub$variable == "NR", 'prom.mod'] <- sub[sub$variable == "NR", 'prom.mod'] * 0
+        sub[sub$variable == "NR", 'prom.mod'] * 1/3
+    sub[sub$variable == "NR", 'prom.mod'] <- sub[sub$variable == "NR", 'prom.mod'] * 1/3
     sub
 })
 names(datos.3)[names(datos.3)== "variable"] <- "candidato"
@@ -38,6 +38,7 @@ datos.4 <- melt(datos.3[datos.3$fecha > "2012-03-01",], id.vars = c("fecha", "ca
 ult.ant <- as.Date("2012-05-16")
 debate <- as.Date("2012-05-06")
 ibero <- as.Date("2012-05-11")
-ggplot(datos.4[datos.4$variable == "prom", ], aes(x = fecha, y = value, colour = candidato, group = candidato)) + 
-    geom_line() + facet_wrap(~variable) + geom_vline(xintercept = as.numeric(ibero))
+ggplot(datos.4, aes(x = fecha, y = value, colour = candidato, group = candidato)) + 
+    geom_line() + facet_wrap(~variable) + geom_vline(xintercept = as.numeric(ibero)) +
+    facet_wrap(~variable)
 
