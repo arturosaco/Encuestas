@@ -41,4 +41,19 @@ ibero <- as.Date("2012-05-11")
 ggplot(datos.4, aes(x = fecha, y = value, colour = candidato, group = candidato)) + 
     geom_line() + facet_wrap(~variable) + geom_vline(xintercept = as.numeric(ibero)) +
     facet_wrap(~variable)
+    
+# ===============
+# = correlacion =
+# ===============
 
+tc <- tipoCambio2jun
+tc$Fecha <- gsub("-", "/", as.character(tc$Fecha))
+
+tc$fecha <- as.Date(tc$Fecha, "%d/%m/%y")
+
+datos.tc <- join(datos.2[datos.2$fecha > "2012-03-01", c("fecha", "variable", "prom")], tc[,c("fecha", "Determinacion")], 
+ type = "inner")
+
+ggplot(datos.tc, aes(x = prom, y = Determinacion)) + 
+    geom_point() + geom_smooth(method = "lm") +
+    xlab("% AMLO") + ylab("TC") + facet_wrap(~variable)

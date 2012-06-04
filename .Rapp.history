@@ -1,131 +1,3 @@
-length(unique(vid$y))
-dim(vid)
-960*53*240
-dim(vid.1)
-head(vid.1)
-53*3*240*320
-3*240*320
-dim(vid.sub)
-vid.sub <- vid.1[vid.1$frame==1,]
-dim(unique(vid.sub))
-head(vid.sub)
-dim(unique(vid.1))
-dim(vid.1)
-12211200/6701449
-vid <- read.csv(file = "/Users/Arturo/Desktop/Kaggle/CHALEARN/data/devel04/csvs/M_1.csv", #
-    header = F)#
-#
-names(vid) <- c("frame", paste("R", 1:320, sep = "__"),#
-    paste("G", 1:320, sep = "__"),#
-    paste("B", 1:320, sep = "__"))#
-vid$y <- rep(1:240, times = 53)
-gc()#
-vid.1 <- melt(vid, id.vars = c("frame", "y"))#
-#rm(vid)#
-gc()
-head(vid.1)
-dim(vid.1)
-dim(unique(vid.1))
-substr(vid.1$variable[1:10], 1, 1)
-gsub(".__","","R__1")
-vid.1$color <- substr(vid.1$variable, 1, 1)#
-vid.1$x <- gsub(".__","",vid.1$variable)
-head(vid.1)
-vid.sub <- vid.1[vid.1$frame==1,c("frame", "x", "y" , "color","value")]
-head(vid.sub)
-dim(vid.sub)
-dim(unique(vid.sub))
-vid.sub.1 <- cast(vid.sub, frame ~ color + x + y,#
-    fun.aggregate = "identity", value = "value")
-head(vid.sub)
-head(vid.sub.1)
-?system.time
-system.time(vid.sub.1 <- cast(vid.sub, frame ~ color + x + y,#
-    fun.aggregate = "identity", value = "value"))
-gc()
-system.time(vid.sub.1 <- cast(vid.sub, frame ~ color + x + y,#
-    fun.aggregate = "identity", value = "value"))
-14*53
-14*53/60
-library(reshape)
-vid <- read.csv(file = "/Users/Arturo/Desktop/Kaggle/CHALEARN/data/devel04/csvs/M_1.csv", #
-    header = F)#
-#
-names(vid) <- c("frame", paste("R", 1:320, sep = "__"),#
-    paste("G", 1:320, sep = "__"),#
-    paste("B", 1:320, sep = "__"))#
-vid$y <- rep(1:240, times = 53)#
-#
-gc()#
-vid.1 <- melt(vid, id.vars = c("frame", "y"))#
-rm(vid)#
-gc()#
-#
-vid.1$color <- substr(vid.1$variable, 1, 1)#
-vid.1$x <- gsub(".__","",vid.1$variable)#
-vid.1$variable <- NULL#
-gc()
-ls()
-system.time(#
-vid.2 <- ddply(vid.1, "frame", function(vid.sub){#
-    cast(vid.sub, frame ~ color + x + y,#
-        fun.aggregate = "identity", value = "value")#
-}, .progress = "text")#
-)
-gc()
-?system.time
-vid <- read.csv(file = "/Users/Arturo/Desktop/Kaggle/CHALEARN/data/devel04/csvs/M_1.csv", #
-    header = F)#
-#
-names(vid) <- c("frame", paste("R", 1:320, sep = "__"),#
-    paste("G", 1:320, sep = "__"),#
-    paste("B", 1:320, sep = "__"))#
-vid$y <- rep(1:240, times = 53)#
-#
-gc()#
-vid.1 <- melt(vid, id.vars = c("frame", "y"))#
-rm(vid)#
-gc()#
-#
-vid.1$color <- substr(vid.1$variable, 1, 1)#
-vid.1$x <- gsub(".__","",vid.1$variable)#
-vid.1$variable <- NULL#
-gc()
-library(reshape)
-gc()#
-vid.1 <- melt(vid, id.vars = c("frame", "y"))#
-rm(vid)#
-gc()#
-#
-vid.1$color <- substr(vid.1$variable, 1, 1)#
-vid.1$x <- gsub(".__","",vid.1$variable)#
-vid.1$variable <- NULL#
-gc()
-vid <- read.csv(file = "/Users/Arturo/Desktop/Kaggle/CHALEARN/data/devel04/csvs/M_1.csv", #
-    header = F)#
-#
-names(vid) <- c("frame", paste("R", 1:320, sep = "__"),#
-    paste("G", 1:320, sep = "__"),#
-    paste("B", 1:320, sep = "__"))#
-vid$y <- rep(1:240, times = 53)#
-#
-gc()#
-vid.1 <- melt(vid, id.vars = c("frame", "y"))#
-rm(vid)#
-gc()#
-#
-vid.1$color <- substr(vid.1$variable, 1, 1)#
-vid.1$x <- gsub(".__","",vid.1$variable)#
-vid.1$variable <- NULL#
-gc()
-system.time(#
-vid.2 <- dlply(vid.1, "frame", function(vid.sub){#
-    cast(vid.sub, frame ~ color + x + y,#
-        fun.aggregate = "identity", value = "value")#
-}, .progress = "text")#
-)
-582/60
-lista.frames <- list()
 lista.frames[1]
 lista.frames[[2]] <- 2
 lista.frames
@@ -501,155 +373,275 @@ registerDoMC(4)
 25000*100
 25000*100/15
 166666.7 * 13
-library(ProjectTemplate)
-setwd("Dropbox/Codigo random/")
-create.project("Encuestas")
-setwd("Encuestas")
-load.project()
-reload.project()
-ls()
-datos <- X18may
-head(datos)
-datos$Error <- as.numeric(gsub("[^0-9]", "", datos$Error))
-head(datos)
-datos <- X18may#
-datos$Error <- as.numeric(gsub("[^0-9\\.]", "", datos$Error))
-head(datos)
-sapply(datos,class)
-datos$Del
-as.Date(datos$Del)
-?as.Date
-as.Date(as.character(datos$Del))
-as.Date(datos$Del, "%d-%m-%y")
-as.Date(datos$Del, "%d/%m/%y")
-head(datos)
-datos$Al <- as.Date(datos$Al, "%d/%m/%y")
-datos$al <- as.Date(datos$al, "%d/%m/%y")
-plot(datos$Muestra, datos$Error)
-datos <- X18may#
-datos$Error <- as.numeric(gsub("[^0-9\\.]", "", datos$Error))#
-datos$Del <- as.Date(datos$Del, "%d/%m/%y")#
-datos$al <- as.Date(datos$al, "%d/%m/%y")
-head(datos)
-reload.project()
-datos <- X18may#
-datos$Error <- as.numeric(gsub("[^0-9\\.]", "", datos$Error))#
-datos$Del <- as.Date(datos$Del, "%d/%m/%y")#
-datos$al <- as.Date(datos$al, "%d/%m/%y")
-head(datos)
-reload.project()
-datos.1 <- melt(datos[,c("del", "al", "Encuesta", "Muestra", "EPN", "JVM", "AMLO", "GQ")],#
-    id.vars = c("del", "al", "Encuesta", "Muestra"))
-reload.project()
-datos <- X18may#
-datos$Error <- as.numeric(gsub("[^0-9\\.]", "", datos$Error))#
-datos$Del <- as.Date(datos$Del, "%d/%m/%y")#
-datos$al <- as.Date(datos$al, "%d/%m/%y")#
+setwd('/Users/Arturo/Dropbox/Codigo random/Encuestas/src')
+library('ProjectTemplate')
+setwd('/Users/Arturo/Dropbox/Codigo random/Encuestas')
+load.project()#
 #
-datos.1 <- melt(datos[,c("del", "al", "Encuesta", "Muestra", "EPN", "JVM", "AMLO", "GQ")],#
-    id.vars = c("del", "al", "Encuesta", "Muestra"))
-sapply(datos,class)
-datos$Del <- base::as.Date(datos$Del, "%d/%m/%y")#
-datos$al <- base::as.Date(datos$al, "%d/%m/%y")
-datos <- X18may#
-datos$Error <- as.numeric(gsub("[^0-9\\.]", "", datos$Error))#
-datos$Del <- as.Date(datos$del, "%d/%m/%y")#
-datos$al <- as.Date(datos$al, "%d/%m/%y")#
-#
-datos.1 <- melt(datos[,c("del", "al", "Encuesta", "Muestra", "EPN", "JVM", "AMLO", "GQ")],#
-    id.vars = c("del", "al", "Encuesta", "Muestra"))
-head(datos.1)
-ggplot(datos.1, aes(x = al, y = value, group = Encuesta, colour = Encuesta)) +#
-    geom_line() + geom_point() + facet_wrap(~variable,ncol =1)
-class(datos.1$value)
-datos.1$value <- a.numeric(datos.1$value)    #
-ggplot(datos.1, aes(x = al, y = value, group = Encuesta, colour = Encuesta)) +#
-    geom_line() + geom_point() + facet_wrap(~variable,ncol =1)
-datos.1$value <- as.numeric(datos.1$value)    #
-ggplot(datos.1, aes(x = al, y = value, group = Encuesta, colour = Encuesta)) +#
-    geom_line() + geom_point() + facet_wrap(~variable,ncol =1)
-ggplot(datos.1, aes(x = al, y = value, group = Encuesta, colour = Encuesta)) +#
-    geom_line() + facet_wrap(~variable,ncol =1)
-head(datos)
-datos <- X18may#
+datos <- X1jun#
 datos$Error <- as.numeric(gsub("[^0-9\\.]", "", datos$Error))#
 datos$del <- as.Date(datos$del, "%d/%m/%y")#
 datos$al <- as.Date(datos$al, "%d/%m/%y")#
+datos$ID <- 1:nrow(datos)#
+datos.aux <- ddply(datos, "ID", function(sub){#
+    data.frame(fecha = seq(from = sub$del, to = sub$al, by = 1),#
+    sub[,!names(sub) %in% c("del", "al")], row.names = NULL)#
+})#
 #
-datos.1 <- melt(datos[,c("del", "al", "Encuesta", "Muestra", "EPN", "JVM", "AMLO", "GQ")],#
-    id.vars = c("del", "al", "Encuesta", "Muestra"))#
-datos.1$value <- as.numeric(datos.1$value)    #
-ggplot(datos.1, aes(x = al, y = value, group = Encuesta, colour = Encuesta)) +#
-    geom_line() + facet_wrap(~variable,ncol =1)
-datos
-datos.1 <- melt(datos[,#
-    c("del", "al", "Encuesta", "Muestra", "EPN", "JVM", "AMLO", "GQ", "NR")],#
-    id.vars = c("del", "al", "Encuesta", "Muestra"))#
-datos.1$value <- as.numeric(datos.1$value)    #
-ggplot(datos.1, aes(x = al, y = value, group = Encuesta, colour = Encuesta)) +#
-    geom_line() + facet_wrap(~variable,ncol =1)
-reload.project()
-datos <- X18may#
-datos$Error <- as.numeric(gsub("[^0-9\\.]", "", datos$Error))#
-datos$del <- as.Date(datos$del, "%d/%m/%y")#
-datos$al <- as.Date(datos$al, "%d/%m/%y")#
-#
-datos.1 <- melt(datos[,#
-    c("del", "al", "Encuesta", "Muestra", "EPN", "JVM", "AMLO", "GQ", "NR")],#
-    id.vars = c("del", "al", "Encuesta", "Muestra"))#
-datos.1$value <- as.numeric(datos.1$value)    #
-ggplot(datos.1, aes(x = al, y = value, group = Encuesta, colour = Encuesta)) +#
-    geom_line() + facet_wrap(~variable,ncol =1)
-head(datos.1)
-datos.1 <- ddply(datos.1, "al", transform, muestra.tot = sum(Muestra, na.rm = T))
-ddply(datos.1, c("al", "variable"), summarise, prom = value * (Muestra / muestra.tot))
-ggplot(datos.2, aes(x = al, y = prom, colour = variable, group = variable)) + #
-    geom_line()
-datos.2 <- ddply(datos.1, c("al", "variable"), summarise,#
-    prom = value * (Muestra / muestra.tot))#
-#
-ggplot(datos.2, aes(x = al, y = prom, colour = variable, group = variable)) + #
-    geom_line()
-head(datos.1)
-head(datos)
-datos.1 <- ddply(datos.1, "al", transform, muestra.tot = sum(Muestra, na.rm = T))#
-datos.2 <- ddply(datos.1, c("al", "variable"), summarise,#
-    prom = sum(value * (Muestra / muestra.tot)))#
-#
-ggplot(datos.2, aes(x = al, y = prom, colour = variable, group = variable)) + #
-    geom_line()
-ggplot(datos.2[year(datos.2$al) > 2011,], aes(x = al, y = prom, colour = variable, group = variable)) + #
-    geom_line()
+datos.1 <- melt(datos.aux[,#
+    c("fecha", "Encuesta", "Muestra", "EPN", "JVM", "AMLO", "GQ", "NR")],#
+    id.vars = c("fecha", "Encuesta", "Muestra"))#
+datos.1[datos.1$value == "ND", 'value'] <- NA#
+datos.1$value <- as.numeric(datos.1$value)#
 datos.1$Muestra <- as.numeric(datos.1$Muestra)    #
 #
-ggplot(datos.1, aes(x = al, y = value, group = Encuesta, colour = Encuesta)) +#
-    geom_line() + facet_wrap(~variable,ncol =1)#
-#
-datos.1 <- ddply(datos.1, "al", transform, muestra.tot = sum(Muestra, na.rm = T))#
-datos.2 <- ddply(datos.1, c("al", "variable"), summarise,#
-    prom = sum(value * (Muestra / muestra.tot)))#
-#
-ggplot(datos.2[year(datos.2$al) > 2011,], aes(x = al, y = prom, colour = variable, group = variable)) + #
-    geom_line()
-head(datos.1)
-datos.2 <- ddply(datos.1, c("al", "variable"), summarise,#
-    prom = sum(value * (Muestra / muestra.tot), na.rm = T))#
-#
-ggplot(datos.2[year(datos.2$al) > 2011,], aes(x = al, y = prom, colour = variable, group = variable)) + #
-    geom_line()
-head(datos.1)
-ddply(datos.1, c("al", variable") summarise, mean(value))
-)
-ddply(datos.1, c("al", variable"), summarise, mean(value))
-)
-ddply(datos.1, c("al", "variable"), summarise, mean(value))
-head(datos.1)
-head(datos.1, 50)
-datos.1$w <- datos.1$Muestra / datos.1$muestra.tot
-datos.1$w
-datos.1 <- ddply(datos.1, "al", transform, muestra.tot = sum(Muestra, na.rm = T))#
+datos.1 <- ddply(datos.1, c("fecha", "variable"), transform, muestra.tot = sum(Muestra, na.rm = T))#
 datos.1$w <- datos.1$Muestra / datos.1$muestra.tot#
-datos.2 <- ddply(datos.1, c("al", "variable"), summarise,#
-    prom = sum(value * w, na.rm = T))
+#
+datos.2 <- ddply(datos.1, c("fecha", "variable"), summarise,#
+    prom = sum(value * w, na.rm = T),#
+    prom.mod = sum(value * w, na.rm = T))
+install.packages("gdata")
+load.project()#
+#
+datos <- X1jun#
+datos$Error <- as.numeric(gsub("[^0-9\\.]", "", datos$Error))#
+datos$del <- as.Date(datos$del, "%d/%m/%y")#
+datos$al <- as.Date(datos$al, "%d/%m/%y")#
+datos$ID <- 1:nrow(datos)#
+datos.aux <- ddply(datos, "ID", function(sub){#
+    data.frame(fecha = seq(from = sub$del, to = sub$al, by = 1),#
+    sub[,!names(sub) %in% c("del", "al")], row.names = NULL)#
+})#
+#
+datos.1 <- melt(datos.aux[,#
+    c("fecha", "Encuesta", "Muestra", "EPN", "JVM", "AMLO", "GQ", "NR")],#
+    id.vars = c("fecha", "Encuesta", "Muestra"))#
+datos.1[datos.1$value == "ND", 'value'] <- NA#
+datos.1$value <- as.numeric(datos.1$value)#
+datos.1$Muestra <- as.numeric(datos.1$Muestra)    #
+#
+datos.1 <- ddply(datos.1, c("fecha", "variable"), transform, muestra.tot = sum(Muestra, na.rm = T))#
+datos.1$w <- datos.1$Muestra / datos.1$muestra.tot#
+#
+datos.2 <- ddply(datos.1, c("fecha", "variable"), summarise,#
+    prom = sum(value * w, na.rm = T),#
+    prom.mod = sum(value * w, na.rm = T))
+ls()
+reload.project()
+reload.project()
+reload.project()
+reload.project()
+head(tipoCambio2jun)
+class(tipoCambio2jun$Fecha)
+tc <- tipoCambio2jun#
+tc$Fecha <- as.Date(tc$Fecha, "%d/%m/%y")
+head(tc)
+tc <- tipoCambio2jun
+as.Date(tc$Fecha, "%d/%m/%y")
+datos <- X1jun#
+datos$Error <- as.numeric(gsub("[^0-9\\.]", "", datos$Error))
+datos$del
+?as.Date
+tc <- tipoCambio2jun
+head(tc)
+tc$Fecha <- as.Date(gsub("/20", "", tc$Fecha), "%d/%m/%y")
+head(tc)
+tc <- tipoCambio2jun
+gsub("/20", "", tc$Fecha)
+as.Date(tc$Fecha, "%d/%m/%y")
+tc$Fecha
+as.Date(as.character(tc$Fecha), "%d/%m/%y")
+as.character(tc$Fecha)
+gsub("[0-9]{2,2}([0-9]{2,2})", "\\1", as.character(tc$Fecha))
+tc$Fecha <- as.Date(gsub("[0-9]{2,2}([0-9]{2,2})", "\\1", as.character(tc$Fecha)), "%d/%m/%y")
+tc$Fecha
+as.Date(gsub("[0-9]{2,2}([0-9]{2,2})", "\\1", as.character(tc$Fecha)), "%d/%m/%y")
+gsub("[0-9]{2,2}([0-9]{2,2})", "\\1", as.character(tc$Fecha))
+datos <- X1jun
+datos$del
+tc <- tipoCambio2jun#
+tc$Fecha <- as.Date(gsub("[0-9]{2,2}([0-9]{2,2})", "\\1", as.character(tc$Fecha)), "%d-%m-%y")
+head(tc)
+gsub("[0-9]{2,2}([0-9]{2,2})", "\\1", as.character(tc$Fecha))
+tc <- tipoCambio2jun
+gsub("[0-9]{2,2}([0-9]{2,2})", "\\1", as.character(tc$Fecha))
+tc$Fecha <- as.Date(gsub("[0-9]{2,2}([0-9]{2,2})", "\\1", as.character(tc$Fecha)), "%d-%m-%y")
+head(tc)
+tc <- tipoCambio2jun
+tc <- tipoCambio2jun#
+tc$Fecha <- as.Date(as.character(tc$Fecha), "%d-%m-%y")
+head(tc)
+as.character(tc$Fecha)
+tc <- tipoCambio2jun
+as.character(tc$Fecha)
+tc$Fecha <- as.Date(tc$Fecha, "%d-%m-%y")
+head(tc)
+?as.date
+?as.Date
+tc <- tipoCambio2jun
+tc$Fecha
+as.Date(tc$Fecha, "%d/%m/%y")
+tc <- tipoCambio2jun#
+tc$Fecha <- as.Date(tc$Fecha, "%dd/%mm/%yyyy")
+head(tc)
+tc <- tipoCambio2jun
+head(tc)
+as.Date(tc$Fecha, "%d/%m/%y")
+tc$Fecha
+tc$Fecha <- as.character(tc$Fecha)
+as.Date(ts$Fecha, "%d/%m/%y")
+as.Date(tc$Fecha, "%d/%m/%y")
+tc <- tipoCambio2jun#
+tc$Fecha <- as.character(tc$Fecha)
+as.Date(tc$Fecha, "%d/%m/%y")
+tc$Fecha
+tc$Fecha
+tc$Fecha
+as.Date(tc$Fecha, "%d/%m/%y")
+tc$Fecha <- gsub("-", "\", as.character(tc$Fecha))
+tc$Fecha <- gsub("-", "/", as.character(tc$Fecha))
+head(tc)
+tc$Fecha <- as.Date(tc$Fecha, "%d/%m/%y")
+head(tc)
 head(datos.2)
-head(datos)
+datos <- X1jun#
+datos$Error <- as.numeric(gsub("[^0-9\\.]", "", datos$Error))#
+datos$del <- as.Date(datos$del, "%d/%m/%y")#
+datos$al <- as.Date(datos$al, "%d/%m/%y")#
+datos$ID <- 1:nrow(datos)#
+datos.aux <- ddply(datos, "ID", function(sub){#
+    data.frame(fecha = seq(from = sub$del, to = sub$al, by = 1),#
+    sub[,!names(sub) %in% c("del", "al")], row.names = NULL)#
+})#
+#
+datos.1 <- melt(datos.aux[,#
+    c("fecha", "Encuesta", "Muestra", "EPN", "JVM", "AMLO", "GQ", "NR")],#
+    id.vars = c("fecha", "Encuesta", "Muestra"))#
+datos.1[datos.1$value == "ND", 'value'] <- NA#
+datos.1$value <- as.numeric(datos.1$value)#
+datos.1$Muestra <- as.numeric(datos.1$Muestra)    #
+#
+datos.1 <- ddply(datos.1, c("fecha", "variable"), transform, muestra.tot = sum(Muestra, na.rm = T))#
+datos.1$w <- datos.1$Muestra / datos.1$muestra.tot#
+#
+datos.2 <- ddply(datos.1, c("fecha", "variable"), summarise,#
+    prom = sum(value * w, na.rm = T),#
+    prom.mod = sum(value * w, na.rm = T))#
+#
+datos.3 <- ddply(datos.2, "fecha", function(sub){#
+    sub[sub$variable == "AMLO", 'prom.mod'] <- sub[sub$variable == "AMLO", 'prom.mod'] + #
+        sub[sub$variable == "NR", 'prom.mod'] * 1/3#
+    sub[sub$variable == "JVM", 'prom.mod'] <- sub[sub$variable == "JVM", 'prom.mod'] + #
+        sub[sub$variable == "NR", 'prom.mod'] * 1/3#
+    sub[sub$variable == "NR", 'prom.mod'] <- sub[sub$variable == "NR", 'prom.mod'] * 1/3#
+    sub#
+})
+head(datos.2)
+tc$fecha <- as.Date(tc$Fecha, "%d/%m/%y")
+head(tc)
+datos.tc <- join(datos.2[, c("fecha", "variable", "prom")], tc[,c("fecha", "Determinación")], #
+ type = "inner")
+head(datos.tc)
+tc <- tipoCambio2jun#
+tc$Fecha <- gsub("-", "/", as.character(tc$Fecha))
+as.Date(tc$Fecha, "%d/%m/%y")
+tc <- tipoCambio2jun#
+tc$Fecha <- gsub("-", "/", as.character(tc$Fecha))
+tc$Fecha
+datos <- X1jun
+datos$del
+tc <- tipoCambio2jun#
+tc$Fecha <- gsub("-", "/", as.character(tc$Fecha))
+head(tc)
+reload.project()
+datos <- X1jun#
+datos$Error <- as.numeric(gsub("[^0-9\\.]", "", datos$Error))#
+datos$del <- as.Date(datos$del, "%d/%m/%y")#
+datos$al <- as.Date(datos$al, "%d/%m/%y")#
+datos$ID <- 1:nrow(datos)#
+datos.aux <- ddply(datos, "ID", function(sub){#
+    data.frame(fecha = seq(from = sub$del, to = sub$al, by = 1),#
+    sub[,!names(sub) %in% c("del", "al")], row.names = NULL)#
+})#
+#
+datos.1 <- melt(datos.aux[,#
+    c("fecha", "Encuesta", "Muestra", "EPN", "JVM", "AMLO", "GQ", "NR")],#
+    id.vars = c("fecha", "Encuesta", "Muestra"))#
+datos.1[datos.1$value == "ND", 'value'] <- NA#
+datos.1$value <- as.numeric(datos.1$value)#
+datos.1$Muestra <- as.numeric(datos.1$Muestra)    #
+#
+datos.1 <- ddply(datos.1, c("fecha", "variable"), transform, muestra.tot = sum(Muestra, na.rm = T))#
+datos.1$w <- datos.1$Muestra / datos.1$muestra.tot#
+#
+datos.2 <- ddply(datos.1, c("fecha", "variable"), summarise,#
+    prom = sum(value * w, na.rm = T),#
+    prom.mod = sum(value * w, na.rm = T))#
+#
+datos.3 <- ddply(datos.2, "fecha", function(sub){#
+    sub[sub$variable == "AMLO", 'prom.mod'] <- sub[sub$variable == "AMLO", 'prom.mod'] + #
+        sub[sub$variable == "NR", 'prom.mod'] * 1/3#
+    sub[sub$variable == "JVM", 'prom.mod'] <- sub[sub$variable == "JVM", 'prom.mod'] + #
+        sub[sub$variable == "NR", 'prom.mod'] * 1/3#
+    sub[sub$variable == "NR", 'prom.mod'] <- sub[sub$variable == "NR", 'prom.mod'] * 1/3#
+    sub#
+})#
+names(datos.3)[names(datos.3)== "variable"] <- "candidato"#
+datos.4 <- melt(datos.3[datos.3$fecha > "2012-03-01",], id.vars = c("fecha", "candidato"))#
+ult.ant <- as.Date("2012-05-16")#
+debate <- as.Date("2012-05-06")#
+ibero <- as.Date("2012-05-11")#
+ggplot(datos.4, aes(x = fecha, y = value, colour = candidato, group = candidato)) + #
+    geom_line() + facet_wrap(~variable) + geom_vline(xintercept = as.numeric(ibero)) +#
+    facet_wrap(~variable)#
+# ===============#
+# = correlacion =#
+# ===============#
+#
+tc <- tipoCambio2jun
+head(tc)
+tc$fecha <- as.Date(tc$Fecha, "%d/%m/%y")
+head(tc)
+datos.tc <- join(datos.2[, c("fecha", "variable", "prom")], tc[,c("fecha", "Determinación")], #
+ type = "inner")
+datos.tc <- join(datos.2[, c("fecha", "variable", "prom")], tc[,c("fecha", "Determinacion")], #
+ type = "inner")
+head(datos.tc)
+datos.tc <- join(datos.2[datos.2$fecha > "2012-03-01", c("fecha", "variable", "prom")], tc[,c("fecha", "Determinacion")], #
+ type = "inner")
+datos.tc <- join(datos.2[datos.2$fecha > "2012-03-01" & datos.2$variable == "AMLO", c("fecha", "variable", "prom")], tc[,c("fecha", "Determinacion")], #
+ type = "inner")
+head(datos.tc)
+omit.na(datos.tc)
+na.omit(datos.tc)
+cor(na.omit(datos.tc)$prom, na.omit(datos.tc)$Determinacion)
+head(datos.tc)
+ggplot(datos.tc, aes(x = prom, y = Determinacion)) + geom_point()
+ggplot(datos.tc, aes(x = prom, y = Determinacion)) + geom_point() + geom_smooth()
+ggplot(datos.tc, aes(x = prom, y = Determinacion)) + geom_point() + geom_smooth(method = "lm")
+ggplot(datos.tc, aes(x = prom, y = Determinacion)) + #
+    geom_point() + geom_smooth(method = "lm") +#
+    xlab("% AMLO") + ylab("TC")
+datos.tc <- join(datos.2[datos.2$fecha > "2012-03-01", c("fecha", "variable", "prom")], tc[,c("fecha", "Determinacion")], #
+ type = "inner")#
+#
+ggplot(datos.tc, aes(x = prom, y = Determinacion)) + #
+    geom_point() + geom_smooth(method = "lm") +#
+    xlab("% AMLO") + ylab("TC") + facet_wrap(~variable)
+ggplot(datos.tc, aes(x = prom, y = Determinacion)) + #
+    geom_point() + geom_smooth(method = "lm") +#
+    xlab("% AMLO") + ylab("TC") + facet_wrap(~variable, ncol = 1)
+ggplot(datos.tc, aes(x = Determinacion, y = prom)) + #
+    geom_point() + geom_smooth(method = "lm") +#
+    xlab("% AMLO") + ylab("TC") + facet_wrap(~variable, ncol = 1)
+ggplot(datos.tc, aes(x = prom, y = Determinacion)) + #
+    geom_point() + geom_smooth(method = "lm") +#
+    xlab("% AMLO") + ylab("TC") + facet_wrap(~variable)
+head(datos.tc)
+ddply(datos.tc, "variable", cor(prom, Determinacion))
+ddply(datos.tc, "variable", cor(prom, Determinacion))
+ddply(datos.tc, "variable", summarise, cor(prom, Determinacion))
+ddply(datos.tc, "variable", summarise, cor(prom, Determinacion, na.rm = T))
+ddply(datos.tc, "variable", summarise, cor(prom, Determinacion))
+ddply(na.omit(datos.tc), "variable", summarise, cor(prom, Determinacion))
